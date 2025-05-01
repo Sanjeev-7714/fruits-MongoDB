@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://fruits-database.vercel.app'], // Update with your actual Vercel URL after deployment
+  origin: ['http://localhost:3000', 'https://fruits-mongo-db.vercel.app/'], // Update with your actual Vercel URL after deployment
   methods: ['GET', 'POST', 'DELETE'],
   credentials: true
 }));
