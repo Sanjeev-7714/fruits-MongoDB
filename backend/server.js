@@ -8,10 +8,23 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://fruits-mongo-db.vercel.app/'], // Update with your actual Vercel URL after deployment
-  methods: ['GET', 'POST', 'DELETE'],
-  credentials: true
+  origin: ['http://localhost:3000', 'https://fruits-mongo-db.vercel.app'], // Fixed Vercel URL by removing trailing slash
+  methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept']
 }));
+
+// Handle preflight requests
+app.options('*', cors());
+
+// Add explicit header for CORS (backup solution)
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin === 'https://fruits-mongo-db.vercel.app') {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  next();
+});
 app.use(express.json());
 
 // MongoDB Connection

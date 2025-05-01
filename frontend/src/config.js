@@ -8,7 +8,7 @@
 
 const config = {
   apiUrl: process.env.NODE_ENV === 'production'
-    ? 'https://fruits-database-api.onrender.com' // Replace with your actual Render URL after deployment
+    ? 'https://fruits-database-api.onrender.com' // Ensure this matches your actual Render URL
     : 'http://localhost:5000'
 };
 
